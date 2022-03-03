@@ -34,7 +34,7 @@ func handleRoot(w http.ResponseWriter, r *http.Request) {
 }
 
 func handleHiddenMessage(w http.ResponseWriter, r *http.Request) {
-	bytesWritten, err := fmt.Fprintf(w, "This is a super secret message")
+	bytesWritten, err := fmt.Fprintf(w, "YOU FOUND IT!!! CONGRATS!!!")
 	if err != nil {
 		fmt.Println(err)
 	}
