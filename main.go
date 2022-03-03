@@ -8,14 +8,8 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		bytesWritten, err := fmt.Fprintf(w, "Hello, New York!!!")
-		if err != nil {
-			fmt.Println(err)
-		}
-
-		log.Printf("Wrote %d bytes", bytesWritten)
-	})
+	http.HandleFunc("/", handleRoot)
+	http.HandleFunc("/hidden-message", handleHiddenMessage)
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -28,4 +22,22 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
+}
+
+func handleRoot(w http.ResponseWriter, r *http.Request) {
+	bytesWritten, err := fmt.Fprintf(w, "Hello, New York!!!")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	log.Printf("Wrote %d bytes", bytesWritten)
+}
+
+func handleHiddenMessage(w http.ResponseWriter, r *http.Request) {
+	bytesWritten, err := fmt.Fprintf(w, "This is a super secret message")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	log.Printf("Wrote %d bytes", bytesWritten)
 }
